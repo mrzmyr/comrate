@@ -3,7 +3,7 @@ var inquirer = require('inquirer');
 inquirer.prompt([{
   type: 'list',
   name: 'rating',
-  message: 'What fun rating would you give for this commit?',
+  message: 'What rating would you give for this commit?',
   choices: ['0', '1', '2', '3', '4', '5'],
   default: 3
 }], function(answers) {
