@@ -73,8 +73,8 @@ function getStats(dir) {
   var commitMessges = util.getCommitMessages(dir);
 
   commitMessges.forEach(function (msg, index) {
-    var unescapedStr = util.unescapeStr(msg);
-    ratingArr.push([index, unescapedStr]);
+    var rating = util.unescapeRating(msg);
+    ratingArr.push([index, rating]);
   });
 
   return ratingArr;
@@ -82,7 +82,7 @@ function getStats(dir) {
 
 function printStats(data) {
 
-  if(data.length < 3) {
+  if(data.length <= 3) {
     util.printError(pkg.name + ' needs at least 3 rated commits');
     return;
   }

@@ -4,23 +4,37 @@ var chalk = require('chalk');
 
 var _PREFIX = 'FRC';
 
+function encodeBase64(str) {
+  return new Buffer(str).toString('base64');
+}
+
 function decodeBase64(str) {
   return new Buffer(str, 'base64').toString('utf8');
 }
 
-function unescapeStr(str) {
+function escapeRating(rating) {
 
-  str = str.replace(_PREFIX, '');
+  // generate 8 random charaters string
+  // http://stackoverflow.com/a/8084248/237209
+  var randomStr = Math.random().toString(36).substring(10);
+
+  var cryptedRating = encodeBase64(rating + randomStr);
+
+  return _PREFIX + cryptedRating;
+}
+
+function unescapeRating(escapedRating) {
+
+  str = escapedRating.replace(_PREFIX, '');
+
 
   // remove last 8 chars
-  str = str.replace(str.substr(4, str.length - 1), '');
-
-  str = decodeBase64(str, 'base64');
+  str = decodeBase64(str, 'base64')[0];
 
   str = str.replace('\n', '');
 
   if(!isNaN(str)) {
-    return str;
+    return parseInt(str);
   } else {
     return 0;
   }
@@ -73,7 +87,8 @@ function printInfo(str) {
 }
 
 module.exports = {
-  unescapeStr: unescapeStr,
+  escapeRating: escapeRating,
+  unescapeRating: unescapeRating,
   getCommitMessages: getCommitMessages,
   isSymbolicLink: isSymbolicLink,
   isFile: isFile,

@@ -4,12 +4,4 @@
 # http://stackoverflow.com/a/6883484/237209
 exec < /dev/tty
 
-node ./.git/hooks/prompt.js
-
-RATING=$?
-RATING_PREFIX="FRC"
-RANDOM_STR=`openssl rand -base64 5`
-ENCODED_RATING=`echo $RATING | base64`
-
-FILE=`cat "$1"`
-echo "$FILE \n\n$RATING_PREFIX$ENCODED_RATING$RANDOM_STR" > "$1"
+node ./.git/hooks/prompt.js $1

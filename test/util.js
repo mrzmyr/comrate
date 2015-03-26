@@ -5,25 +5,34 @@ function encodeBase64(str) {
   return new Buffer(str).toString('base64');
 }
 
+function decodeBase64(str) {
+  return new Buffer(str, 'base64').toString('utf8');
+}
+
 describe('utilities', function() {
   'use strict';
 
-  describe('unescapeStr()', function() {
+  describe('unescapeRating()', function() {
 
-    it('should unescape the funcy format correctly', function() {
-
-      var _PREFIX = 'FRC';
-      var rating = encodeBase64('5');
-      var randomStr = 'kdjf73u=';
-
-      var str = _PREFIX + rating + randomStr;
-
-      expect(util.unescapeStr(str)).toBe('5');
+    it('should unescape format correctly', function() {
+      var crypedRating = util.escapeRating(5);
+      expect(util.unescapeRating(crypedRating)).toBe(5);
     });
 
     it('should respond with 0 when its not possbile to unescape', function() {
       var str = encodeBase64('as');
-      expect(util.unescapeStr(str)).toBe(0);
+      expect(util.unescapeRating(str)).toBe(0);
+    });
+
+  });
+
+  describe('escapeRating()', function() {
+
+    it('should escape format correctly', function() {
+      var crypedRating = util.escapeRating(5);
+      var rating = decodeBase64(crypedRating.substr(3, crypedRating.length - 1))[0];
+
+      expect(rating).toBe('5');
     });
 
   });
