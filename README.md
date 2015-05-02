@@ -12,7 +12,7 @@ npm install -g comrate
 ```
 
 ## Usage
-fu
+
 ```
 ❯ comrate
 
