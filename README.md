@@ -12,7 +12,7 @@ npm install -g comrate
 ```
 
 ## Usage
-
+fu
 ```
 ❯ comrate
 
@@ -39,7 +39,7 @@ cd ~/projects/my-fun-project
 
 ❯ comrate enable
 
-Info: funcy is already enabled
+Info: comrate is already enabled
 ```
 
 ### Commit
