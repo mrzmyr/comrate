@@ -1,6 +1,6 @@
 {
   "name": "comrate",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "add a rating to your commit message",
   "main": "index.js",
   "dependencies": {
